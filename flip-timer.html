@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+	<style>
+		li {
+		  display: block;
+		}
+		span {
+		  height: 4950px;
+		  float: left;
+		  width: 67px;
+		  margin-top: 0px;
+		  background-image: url("digits.png");
+		  background-size: 67px auto;
+		  animation-duration: .4s;
+		  animation-timing-function: steps(6);
+		  animation-fill-mode: forwards;
+		}
+
+		.item:after {
+		  display: block;
+		  height: 77px;
+		  float: left;
+		  width: 53px;
+		  content: ':';
+		}
+
+		@keyframes flip-counter-9 {
+		  from {
+			margin-top: -4320px;
+		  }
+		  to {
+			margin-top: -4860px;
+		  }
+		}
+
+		@keyframes flip-counter-8 {
+		  from {
+			margin-top: -3780px;
+		  }
+		  to {
+			margin-top: -4320px;
+		  }
+		}
+
+		@keyframes flip-counter-7 {
+		  from {
+			margin-top: -3240px;
+		  }
+		  to {
+			margin-top: -3780px;
+		  }
+		}
+
+		@keyframes flip-counter-6 {
+		  from {
+			margin-top: -2700px;
+		  }
+		  to {
+			margin-top: -3240px;
+		  }
+		}
+
+		@keyframes flip-counter-5 {
+		  from {
+			margin-top: -2160px;
+		  }
+		  to {
+			margin-top: -2700px;
+		  }
+		}
+
+		@keyframes flip-counter-4 {
+		  from {
+			margin-top: -1620px;
+		  }
+		  to {
+			margin-top: -2160px;
+		  }
+		}
+
+		@keyframes flip-counter-3 {
+		  from {
+			margin-top: -1080px;
+		  }
+		  to {
+			margin-top: -1620px;
+		  }
+		}
+
+		@keyframes flip-counter-2 {
+		  from {
+			margin-top: -540px;
+		  }
+		  to {
+			margin-top: -1080px;
+		  }
+		}
+
+		@keyframes flip-counter-1 {
+		  from {
+			margin-top: 0px;
+		  }
+		  to {
+			margin-top: -540px;
+		  }
+		}
+
+		@keyframes flip-counter-0 {
+		  from {
+			margin-top: -4860px;
+		  }
+		  to {
+			margin-top: 0px;
+		  }
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul_timer" style="height:90px; overflow:hidden;">
+	  <li><span></span></li>
+	  <li><span class="item"></span></li>
+	  <li><span></span></li>
+	  <li><span></span></li>
+	  <li><span></span></li>
+	  <li><span></span></li>
+	</ul>
+
+	<script type="text/javascript">
+	setInterval(function(){
+		var vTimer = new Date().toTimeString().split(' ')[0].split(":");
+		flipTimer(parseInt(vTimer[0]) * 3600 + parseInt(vTimer[1]) * 60 + parseInt(vTimer[2]));
+	}, 1000);
+	
+	var spans = document.querySelectorAll("#ul_timer span");
+	function flipTimer(t) {
+	  
+	  var divisor = 10;
+	  var dividend = t;
+	  for (var i = spans.length - 1; i >= 0; i--) {
+		var item = spans[i];
+		item.style.animationName = ("flip-counter-" + (dividend % divisor));
+		dividend = parseInt(dividend / divisor);
+		divisor = (divisor == 10 ? 6 : 10);
+	  }
+	}
+
+	</script>
+</body>
+</html>
